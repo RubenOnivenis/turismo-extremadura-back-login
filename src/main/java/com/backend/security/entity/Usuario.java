@@ -1,7 +1,11 @@
 package com.backend.security.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import java.sql.Blob;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +23,11 @@ public class Usuario {
     private String email;
     @NotNull
     private String password;
+    @NotBlank
+    private String apellidos;
+    private Date fch_nacimiento;
+    private Blob imagen_perfil;
+    private String telefono;
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
@@ -28,11 +37,15 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password,  @NotNull String apellidos, Date fch_nacimiento, Blob imagen_perfil, String telefono) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
+        this.apellidos= apellidos;
+        this.fch_nacimiento= fch_nacimiento;
+        this.imagen_perfil= imagen_perfil;
+        this.telefono= telefono;
     }
 
     public int getId() {
@@ -75,7 +88,39 @@ public class Usuario {
         this.password = password;
     }
 
-    public Set<Rol> getRoles() {
+    public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public Date getFch_nacimiento() {
+		return fch_nacimiento;
+	}
+
+	public void setFch_nacimiento(Date fch_nacimiento) {
+		this.fch_nacimiento = fch_nacimiento;
+	}
+
+	public Blob getImagen_perfil() {
+		return imagen_perfil;
+	}
+
+	public void setImagen_perfil(Blob imagen_perfil) {
+		this.imagen_perfil = imagen_perfil;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public Set<Rol> getRoles() {
         return roles;
     }
 
