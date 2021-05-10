@@ -15,7 +15,6 @@ public class AlojamientosController {
     @Autowired
     AlojamientosService alojamientosService;
 
-    @PreAuthorize("hasRole('USER')")
     @GetMapping("/alojamientos")
     public List<Alojamientos> getAlojamientosByName(@PathVariable String nombre){
         return alojamientosService.getAlojamientosByName(nombre);
