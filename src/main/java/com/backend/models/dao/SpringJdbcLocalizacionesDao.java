@@ -48,7 +48,7 @@ public class SpringJdbcLocalizacionesDao extends JdbcDaoSupport implements Local
 
             Localizaciones localizaciones = new Localizaciones();
 
-            localizaciones.setIdLocalizacion(rs.getInt("idLocalizacion"));
+            localizaciones.setIdLocalizacion(rs.getInt("id_localizacion"));
             localizaciones.setNombre(rs.getString("nombre"));
             localizaciones.setProvincia(rs.getString("provincia"));
             localizaciones.setComarca(rs.getString("comarca"));
