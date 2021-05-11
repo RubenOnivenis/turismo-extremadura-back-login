@@ -1,9 +1,11 @@
 package com.backend.models.dao;
 
 import com.backend.models.entity.Localizaciones;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,16 @@ public class SpringJdbcLocalizacionesDao extends JdbcDaoSupport implements Local
         return getJdbcTemplate().query(sql, new localizacionesRowMapper());
 
     }
+    
+    @Override
+	public List<Localizaciones> getLocalizacionesByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		String SQL="SELECT id_localizacion, nombre, provincia, comarca, imagen FROM localizaciones WHERE nombre LIKE CONCAT('%',:nombre,'%');";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("nombre", nombre);
+		return getNamedJdbcTemplate().query(SQL, params, new localizacionesRowMapper());
+	}
+	
 
     private NamedParameterJdbcTemplate getNamedJdbcTemplate() {
 
