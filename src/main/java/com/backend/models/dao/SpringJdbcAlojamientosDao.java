@@ -35,9 +35,17 @@ public class SpringJdbcAlojamientosDao extends JdbcDaoSupport implements Alojami
     }
 
     @Override
+    public List<Alojamientos> getAlojamientos() {
+        String sql = "SELECT a.imagen, a.nombre, l.nombre, a.descripcion FROM alojamientos a INNER JOIN localizaciones l " +
+                "ON a.id_localizacion = l.id_localizacion";
+
+        return getJdbcTemplate().query(sql, new SpringJdbcAlojamientosDao.AlojamientosRowMapper());
+    }
+
+    @Override
     public List<Alojamientos> getAlojamientosByName(String nombre) {
 
-        String sql = "SELECT a.imagen, a.nombre, l.nombre FROM alojamientos a INNER JOIN localizaciones l " +
+        String sql = "SELECT a.imagen, a.nombre, l.nombre, a.descripcion FROM alojamientos a INNER JOIN localizaciones l " +
                 "ON a.id_localizacion = l.id_localizacion WHERE a.nombre = :nombre OR l.nombre = :nombre";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

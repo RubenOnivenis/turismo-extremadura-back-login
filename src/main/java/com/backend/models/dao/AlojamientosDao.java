@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface AlojamientosDao {
 
-    public List<Alojamientos> getAlojamientosByName(String nombre);
+    List<Alojamientos> getAlojamientos();
+
+    List<Alojamientos> getAlojamientosByName(String nombre);
 }

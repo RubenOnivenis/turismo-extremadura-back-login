@@ -14,6 +14,11 @@ public class AlojamientosServiceImpl implements AlojamientosService{
     AlojamientosDao alojamientosDao;
 
     @Override
+    public List<Alojamientos> findAll() {
+        return alojamientosDao.getAlojamientos();
+    }
+
+    @Override
     public List<Alojamientos> getAlojamientosByName(String nombre) {
         return alojamientosDao.getAlojamientosByName(nombre);
     }

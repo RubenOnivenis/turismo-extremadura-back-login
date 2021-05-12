@@ -26,7 +26,8 @@ public class LocalizacionesController {
 
         return localizacionesService.findAll();
     }
-    
+
+    // Controlador para ver las localizaciones según el nombre, este sirve para el buscador del front
     @GetMapping("/productos/nombre/{nombre}")
 	public List<Localizaciones> show(@PathVariable String nombre) {
 		return localizacionesService.findByName(nombre);
