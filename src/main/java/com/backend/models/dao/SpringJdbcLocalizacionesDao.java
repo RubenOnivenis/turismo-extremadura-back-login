@@ -28,7 +28,7 @@ public class SpringJdbcLocalizacionesDao extends JdbcDaoSupport implements Local
 
     public List<Localizaciones> getLocalizaciones(){
 
-        String sql = "SELECT id_localizacion, nombre, provincia, comarca, imagen FROM  localizaciones";
+        String sql = "SELECT id_localizacion, nombre, provincia, comarca, imagen FROM  localizaciones;";
         return getJdbcTemplate().query(sql, new localizacionesRowMapper());
 
     }
@@ -37,8 +37,10 @@ public class SpringJdbcLocalizacionesDao extends JdbcDaoSupport implements Local
 	public List<Localizaciones> getLocalizacionesByNombre(String nombre) {
 		// TODO Auto-generated method stub
 		String SQL="SELECT id_localizacion, nombre, provincia, comarca, imagen FROM localizaciones WHERE nombre LIKE CONCAT('%',:nombre,'%');";
+
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("nombre", nombre);
+
 		return getNamedJdbcTemplate().query(SQL, params, new localizacionesRowMapper());
 	}
 	
