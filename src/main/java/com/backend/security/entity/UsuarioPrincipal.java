@@ -21,14 +21,13 @@ public class UsuarioPrincipal implements UserDetails {
     private String telefono;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, String apellidos, Date fch_nacimiento, Blob imagen_perfil, String telefono, Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, String apellidos, Date fch_nacimiento, String telefono, Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
         this.apellidos= apellidos;
         this.fch_nacimiento= fch_nacimiento;
-        this.imagen_perfil= imagen_perfil;
         this.telefono= telefono;
         this.authorities = authorities;
     }
@@ -37,7 +36,7 @@ public class UsuarioPrincipal implements UserDetails {
         List<GrantedAuthority> authorities =
                 usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
                 .getRolNombre().name())).collect(Collectors.toList());
-        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), usuario.getApellidos(), usuario.getFch_nacimiento(), usuario.getImagen_perfil(), usuario.getTelefono(), authorities);
+        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), usuario.getApellidos(), usuario.getFch_nacimiento(), usuario.getTelefono(), authorities);
     }
 
     @Override
@@ -89,10 +88,6 @@ public class UsuarioPrincipal implements UserDetails {
     
     public Date getFch_Nacimiento() {
         return fch_nacimiento;
-    }
-    
-    public Blob getImagen_Perfil() {
-        return imagen_perfil;
     }
     
     public String getTelefono() {

@@ -27,7 +27,6 @@ public class Usuario {
     @NotBlank
     private String apellidos;
     private Date fch_nacimiento;
-    private Blob imagen_perfil;
     private String telefono;
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
@@ -38,14 +37,13 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password,  @NotNull String apellidos, Date fch_nacimiento, Blob imagen_perfil, String telefono) {
+    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password,  @NotNull String apellidos, Date fch_nacimiento, String telefono) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
         this.apellidos= apellidos;
         this.fch_nacimiento= fch_nacimiento;
-        this.imagen_perfil= imagen_perfil;
         this.telefono= telefono;
     }
 
@@ -103,14 +101,6 @@ public class Usuario {
 
 	public void setFch_nacimiento(Date fch_nacimiento) {
 		this.fch_nacimiento = fch_nacimiento;
-	}
-
-	public Blob getImagen_perfil() {
-		return imagen_perfil;
-	}
-
-	public void setImagen_perfil(Blob imagen_perfil) {
-		this.imagen_perfil = imagen_perfil;
 	}
 
 	public String getTelefono() {

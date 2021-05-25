@@ -20,7 +20,6 @@ public class NuevoUsuario {
     @NotBlank
     private String apellidos;
     private Date fch_nacimiento;
-    private Blob imagen_perfil;
     private String telefono;
     private Set<String> roles = new HashSet<>();
 
@@ -78,14 +77,6 @@ public class NuevoUsuario {
 
 	public void setFch_nacimiento(Date fch_nacimiento) {
 		this.fch_nacimiento = fch_nacimiento;
-	}
-
-	public Blob getImagen_perfil() {
-		return imagen_perfil;
-	}
-
-	public void setImagen_perfil(Blob imagen_perfil) {
-		this.imagen_perfil = imagen_perfil;
 	}
 
 	public String getTelefono() {
