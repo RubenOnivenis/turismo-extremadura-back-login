@@ -1,0 +1,160 @@
+-- PROYECTO SOLEX
+
+-- Jaime Ávila 
+-- Rubén Onivenis
+
+-- Tutora: Isabel Muñoz
+
+-- Crear BBDD
+CREATE DATABASE db_solex;
+
+-- TABLA rol
+CREATE TABLE rol (
+  id INT PRIMARY KEY NOT NULL,
+  rol_nombre VARCHAR(255) NOT NULL
+); 
+
+-- Datos tabla rol
+INSERT INTO `rol` (`id`, `rol_nombre`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER');
+
+-- TABLA usuarios
+CREATE TABLE usuario(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(50) NOT NULL, 
+    apellidos VARCHAR(30) NOT NULL, 
+    fch_nacimiento DATE NULL, 
+    email VARCHAR(60) UNIQUE NOT NULL, 
+    password VARCHAR(120) NOT NULL,
+    imagen_perfil BLOB NULL,
+    telefono CHAR(9) NULL
+);
+
+-- Datos tabla usuarios
+INSERT INTO `usuario` (`id`, `email`, `nombre`, `nombre_usuario`, `password`, `apellidos`, `fch_nacimiento`, `imagen_perfil`, `telefono`) VALUES
+(1, 'j@j.j', 'Jaime', 'Jaime', '$2a$10$yapn3ypiBE.ytLq3wNDdiOajA.kXrkdrIVOSI8mcQOSQCyD2ZYLEK', 'Avila', NULL, NULL, NULL),
+(2, 'r@r.r', 'Ruben', 'Ruben', '$2a$10$yapn3ypiBE.ytLq3wNDdiOajA.kXrkdrIVOSI8mcQOSQCyD2ZYLEK', 'Onivenis', NULL, NULL, NULL);
+
+
+-- TABLA usuario_rol
+CREATE TABLE usuario_rol (
+  usuario_id INT NOT NULL,
+  rol_id INT NOT NULL,
+  CONSTRAINT FK_id_rol FOREIGN KEY (rol_id) REFERENCES rol(id)
+);
+
+-- Dos claves primarias en la tabla usuario_rol
+ALTER TABLE usuario_rol ADD PRIMARY KEY (usuario_id,rol_id) USING BTREE;
+
+-- Datos tabla usuario_rol
+INSERT INTO `usuario_rol` (`usuario_id`, `rol_id`) VALUES
+(1, 1),
+(2, 1);
+
+-- TABLA localizaciones
+CREATE TABLE localizaciones(
+    id_localizacion TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(120) NOT NULL,
+    povincia VARCHAR(30) NOT NULL,
+    comarca VARCHAR(40) NOT NULL,
+    imagen blob DEFAULT NULL
+);
+
+
+-- Datos tabla localizaciones
+INSERT INTO `localizaciones` (`id_localizacion`, `nombre`, `povincia`, `comarca`) VALUES
+(1, 'Badajoz', 'Badajoz', 'Badajoz'),
+(2, 'Mérida', 'Badajoz', 'Mérida'),
+(3, 'Cáceres', 'Cáceres', 'Cáceres'),
+(4, 'Guadalupe', 'Cáceres', 'Villuerca-Ibores'),
+(5, 'Olivenza', 'Badajoz', 'Olivenza'),
+(6, 'Almendralejo', 'Badajoz', 'Tierra de Barros');
+
+-- TABLA alojamientos
+CREATE TABLE alojamientos(
+    id_alojamiento SMALLINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_localizacion TINYINT UNSIGNED NOT NULL,
+    imagen BLOB,
+    nombre VARCHAR(120) NOT NULL,
+    CONSTRAINT FK_alojamiento_localizaciones FOREIGN KEY (id_localizacion) REFERENCES localizaciones(id_localizacion)
+);
+
+
+-- Datos tabla alojamientos
+INSERT INTO `alojamientos` (`id_alojamiento`, `id_localizacion`, `nombre`, `Imagen`) VALUES
+(1, 4, 'Parador de Guadalupe', NULL),
+(2, 3, 'Soho Boutique Casa Don Fernando', NULL),
+(3, 1, 'Sercotel Gran Hotel Zurbarán', NULL),
+(4, 2, 'Hotel Ilunion Mérida Palace', NULL),
+(5, 6, 'Hotel Acosa Vetonia', NULL),
+(6, 5, 'Hotel Heredero', NULL);
+
+-- TABLA rutas
+CREATE TABLE rutas(
+    id_ruta SMALLINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_localizacion TINYINT UNSIGNED NOT NULL,
+    nombre VARCHAR (150) NOT NULL,
+    CONSTRAINT FK_rutas_localizaciones FOREIGN KEY (id_localizacion) REFERENCES localizaciones(id_localizacion) 
+);
+
+-- TABLA comentarios_alojamientos
+CREATE TABLE comentarios_alojamientos(
+    id_comentario_alojamiento INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    comentario VARCHAR(2000) NOT NULL,
+    id_usuario INT NOT NULL,
+    id_alojamiento SMALLINT UNSIGNED NOT NULL,
+    fch_hora_comentario DATE NOT NULL,
+    CONSTRAINT FK_comentarios_alojamientos_usuarios FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    CONSTRAINT FK_comentarios_alojamientos_alojamientos FOREIGN KEY (id_alojamiento) REFERENCES alojamientos(id_alojamiento)
+);
+
+-- TABLA comentarios_ruta
+CREATE TABLE comentarios_ruta(
+    id_comentario_ruta INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    comentario VARCHAR(2000) NOT NULL,
+    id_usuario INT UNSIGNED NOT NULL,
+    id_ruta SMALLINT UNSIGNED NOT NULL,
+    fch_hora_comentario DATE NOT NULL,
+    CONSTRAINT FK_comentarios_rutas_usuarios FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    CONSTRAINT FK_comentarios_rutas_rutas FOREIGN KEY (id_ruta) REFERENCES rutas(id_ruta)
+);
+
+-- TABLA foro_temas
+CREATE TABLE foro_temas(
+    id_tema INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre_tema VARCHAR(250) NOT NULL,
+    id_usuario INT NOT NULL,
+    fch_hora_tema DATE NOT NULL,
+    CONSTRAINT FK_foro_temas_usuarios FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+);
+
+-- TABLA comentarios_foro
+CREATE TABLE comentarios_foro(
+    id_comentario_foro INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    comentario VARCHAR(2000) NOT NULL,
+    id_usuario INT UNSIGNED NOT NULL,
+    id_tema INT UNSIGNED NOT NULL,
+    fch_hora_comentario DATE NOT NULL,
+    CONSTRAINT FK_comentarios_foro_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    CONSTRAINT FK_comentarios_foro_tema FOREIGN KEY (id_tema) REFERENCES foro_temas(id_tema)
+);
+
+-- TABLA imagen _galeria
+CREATE TABLE imagen_galeria(
+    id_imagen INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_usuario INT UNSIGNED NOT NULL,
+    imagen VARCHAR(100) NOT NULL,
+    ubicacion VARCHAR(120) NULL,
+    comentario VARCHAR(220) NULL,
+    fch_hora_tema DATE NOT NULL,
+    CONSTRAINT FK_imagen_galeria_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
+
+
+
+
+
+
+
