@@ -10,19 +10,19 @@ import java.util.Set;
 
 public class NuevoUsuario {
 
-    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
+    /** Con esta anotacion indicamos que no puede ser null ni estar vacio**/
     @NotBlank
     private String nombre;
-    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
+    /** Con esta anotacion indicamos que no puede ser null ni estar vacio**/
     @NotBlank
     private String nombreUsuario;
-    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
+    /** Con esta anotacion indicamos que no puede el campo es email **/
     @Email
     private String email;
-    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
+    /** Con esta anotacion indicamos que no puede ser null ni estar vacio **/
     @NotBlank
     private String password;
-    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
+    /** Con esta anotacion indicamos que no puede ser null ni estar vacio **/
     @NotBlank
     private String apellidos;
     private Date fch_nacimiento;

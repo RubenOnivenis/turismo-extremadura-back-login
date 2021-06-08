@@ -61,9 +61,12 @@ public class AuthController {
     /** variable jwtProvider de tipo JwtProvider **/
     JwtProvider jwtProvider;
 
-    /** Anotación con la cual indicamos que es una petición de tipo POST y en el endpoint se escribirá /nuevo **/
+    /** Anotacion con la cual indicamos que es una peticion de tipo POST y en el endpoint se escribe /nuevo **/
     @PostMapping("/nuevo")
-    /**  **/
+    /** Metodo para crear un nuevo usuario
+     * @Valid es una anotacion para comprobar que los campos son validos
+     * @RequestBody le pasamos el cuerpo entero del obj
+     * **/
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
@@ -83,9 +86,12 @@ public class AuthController {
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
-    /** Anotación con la cual indicamos que es una petición de tipo POST y en el endpoint se escribirá /login **/
+    /** Anotacion con la cual indicamos que es una peticion de tipo POST y en el endpoint se escribe /login **/
     @PostMapping("/login")
-    /**  **/
+    /** Metodo para el login del usuario
+     * @Valid es una anotacion para comprobar que los campos son validos
+     * @RequestBody le pasamos el cuerpo entero del obj
+     * **/
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
@@ -97,9 +103,11 @@ public class AuthController {
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
 
-    /** Anotación con la cual indicamos que es una petición de tipo POST y en el endpoint se escribirá /refresh **/
+    /** Anotacion con la cual indicamos que es una peticion de tipo POST y en el endpoint se escribe /refresh **/
     @PostMapping("/refresh")
-    /**  **/
+    /** Metodo para eliminar el token
+     * @RequestBody le pasamos el cuerpo entero del obj
+     * **/
     public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException {
         String token = jwtProvider.refreshToken(jwtDto);
         JwtDto jwt = new JwtDto(token);
