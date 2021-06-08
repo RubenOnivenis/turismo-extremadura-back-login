@@ -9,20 +9,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class NuevoUsuario {
+
+    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
     @NotBlank
     private String nombre;
+    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
     @NotBlank
     private String nombreUsuario;
+    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
     @Email
     private String email;
+    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
     @NotBlank
     private String password;
+    /** Con esta anotación indicamos que no puede ser null ni estar vacío**/
     @NotBlank
     private String apellidos;
     private Date fch_nacimiento;
     private String telefono;
+    /**  la clase HashSet es aquella que implementa la interfaz Set que respaldada por una tabla hash en realidad es una instancia de HashMap. **/
     private Set<String> roles = new HashSet<>();
 
+
+    /** GETTERS AND SETTERS **/
     public String getNombre() {
         return nombre;
     }

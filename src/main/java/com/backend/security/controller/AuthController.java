@@ -32,27 +32,38 @@ import com.backend.security.jwt.JwtProvider;
 import com.backend.security.service.RolService;
 import com.backend.security.service.UsuarioService;
 
+/** Anotacion que nos indica que es una clase para controladores **/
 @RestController
+/** Anotacion para el mapeo, le indicamos que /auth ira al principio **/
 @RequestMapping("/auth")
+/** Anotacion que define la interacción entre un navegador y un servidor para manejar de forma segura las solicitudes HTTP **/
 @CrossOrigin
 public class AuthController {
 
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
+    /** Variable passwordEncoder de tipo PasswordEncoder **/
     PasswordEncoder passwordEncoder;
-
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
+    /** Variable authenticationManager de tipo AuthenticationManager **/
     AuthenticationManager authenticationManager;
-
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
+    /** Variable usuarioService de tipo usuarioService **/
     UsuarioService usuarioService;
-
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
+    /** Variable rolService de tipo RolService **/
     RolService rolService;
-
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
+    /** variable jwtProvider de tipo JwtProvider **/
     JwtProvider jwtProvider;
 
+    /** Anotación con la cual indicamos que es una petición de tipo POST y en el endpoint se escribirá /nuevo **/
     @PostMapping("/nuevo")
+    /**  **/
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
@@ -72,7 +83,9 @@ public class AuthController {
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
+    /** Anotación con la cual indicamos que es una petición de tipo POST y en el endpoint se escribirá /login **/
     @PostMapping("/login")
+    /**  **/
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
@@ -84,7 +97,9 @@ public class AuthController {
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
 
+    /** Anotación con la cual indicamos que es una petición de tipo POST y en el endpoint se escribirá /refresh **/
     @PostMapping("/refresh")
+    /**  **/
     public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException {
         String token = jwtProvider.refreshToken(jwtDto);
         JwtDto jwt = new JwtDto(token);

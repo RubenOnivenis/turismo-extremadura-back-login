@@ -14,10 +14,13 @@ import org.springframework.stereotype.Component;
  *
  */
 
+/** @Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
 @Component
 public class CreateRoles implements CommandLineRunner {
 
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
+    /** Variable rolService de tipo RolService **/
     RolService rolService;
 
     @Override
