@@ -4,39 +4,56 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/** Con la antoación @Entity indicamos que es una entidad **/
 @Entity
+/** Se indica como se llama la tabla de esta entidad **/
 @Table(name = "usuario")
 public class Usuario {
+	
+	/** Variables
+
+    /**Con esta anotación indicamos que es el Identificador de la tabla **/
     @Id
+    /** Con esta anotación se configura la forma del incremento del campo, como el AUTO_INCREMENT de MYSQL **/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    /** Con esta anotación se configura que no sea NULL **/
     @NotNull
     private String nombre;
+    /** Con esta anotación se configura que no sea NULL **/
     @NotNull
+    /** Con esta anotación se configura que sea una Clave Unica **/
     @Column(unique = true)
     private String nombreUsuario;
+    /** Con esta anotación se configura que no sea NULL **/
     @NotNull
     private String email;
+    /** Con esta anotación se configura que no sea NULL **/
     @NotNull
     private String password;
+    /** Con esta anotación se configura que no sea NULL **/
     @NotBlank
     private String apellidos;
     private Date fch_nacimiento;
     private String telefono;
+    /** Con esta anotación se configura que no sea NULL **/
     @NotNull
+    /** Con esta anotación se configura que la relaciones en la Base de Datos sea Muchos a Muchos **/
     @ManyToMany(fetch = FetchType.EAGER)
+    /** Con esta anotación se configura la relación entre las Tablas de la Base de Datos **/
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
 
+    /** Contructor de la clase **/
     public Usuario() {
     }
 
+    /** Contructor con las variables **/
     public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password,  @NotNull String apellidos, Date fch_nacimiento, String telefono) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
@@ -46,6 +63,8 @@ public class Usuario {
         this.fch_nacimiento= fch_nacimiento;
         this.telefono= telefono;
     }
+    
+    /** GETTERS AND SETTERS **/
 
     public int getId() {
         return id;
