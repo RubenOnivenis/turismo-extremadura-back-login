@@ -15,13 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** Clase JwtTokenFilter que extiende de OncePerRequestFilter**/
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     JwtProvider jwtProvider;
 
+    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
