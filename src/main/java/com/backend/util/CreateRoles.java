@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * MUY IMPORTANTE: ESTA CLASE SÓLO SE EJECUTARÁ UNA VEZ PARA CREAR LOS ROLES.
- * UNA VEZ CREADOS SE DEBERÁ ELIMINAR O BIEN COMENTAR EL CÓDIGO
+ * MUY IMPORTANTE: ESTA CLASE SOLO SE EJECUTARA UNA VEZ PARA CREAR LOS ROLES.
+ * UNA VEZ CREADOS SE DEBERA ELIMINAR O BIEN COMENTAR EL CODIGO
  */
 
 /** Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
