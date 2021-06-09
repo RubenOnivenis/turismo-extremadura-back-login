@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/** @Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
+/** Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
 @Component
 /** Implementa las funcionalidades de AuthenticationEntryPoint **/
 public class JwtEntryPoint implements AuthenticationEntryPoint {

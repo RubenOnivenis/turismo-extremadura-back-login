@@ -40,11 +40,11 @@ import com.backend.security.service.UsuarioService;
 @CrossOrigin
 public class AuthController {
 
-    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
+    /** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable passwordEncoder de tipo PasswordEncoder **/
     PasswordEncoder passwordEncoder;
-    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
+    /** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable authenticationManager de tipo AuthenticationManager **/
     AuthenticationManager authenticationManager;
@@ -64,8 +64,8 @@ public class AuthController {
     /** Anotacion con la cual indicamos que es una peticion de tipo POST y en el endpoint se escribe /nuevo **/
     @PostMapping("/nuevo")
     /** Metodo para crear un nuevo usuario
-     * @Valid es una anotacion para comprobar que los campos son validos
-     * @RequestBody le pasamos el cuerpo entero del obj
+     * Valid es una anotacion para comprobar que los campos son validos
+     * RequestBody le pasamos el cuerpo entero del obj
      * **/
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
@@ -89,8 +89,8 @@ public class AuthController {
     /** Anotacion con la cual indicamos que es una peticion de tipo POST y en el endpoint se escribe /login **/
     @PostMapping("/login")
     /** Metodo para el login del usuario
-     * @Valid es una anotacion para comprobar que los campos son validos
-     * @RequestBody le pasamos el cuerpo entero del obj
+     * Valid es una anotacion para comprobar que los campos son validos
+     * RequestBody le pasamos el cuerpo entero del obj
      * **/
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
@@ -106,7 +106,7 @@ public class AuthController {
     /** Anotacion con la cual indicamos que es una peticion de tipo POST y en el endpoint se escribe /refresh **/
     @PostMapping("/refresh")
     /** Metodo para eliminar el token
-     * @RequestBody le pasamos el cuerpo entero del obj
+     * RequestBody le pasamos el cuerpo entero del obj
      * **/
     public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException {
         String token = jwtProvider.refreshToken(jwtDto);

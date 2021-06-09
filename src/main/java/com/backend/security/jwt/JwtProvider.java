@@ -18,16 +18,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** @Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
+/** Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
 @Component
 public class JwtProvider {
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    /** @Value asigna un valor a la variable, en este caso es el tipo de encriptacion **/
+    /** Value asigna un valor a la variable, en este caso es el tipo de encriptacion **/
     @Value("${jwt.secret}")
     private String secret;
 
-    /** @Value asigna un valor a la variable, en este caso es el tiempo de expiracion del token **/
+    /** Value asigna un valor a la variable, en este caso es el tiempo de expiracion del token **/
     @Value("${jwt.expiration}")
     private int expiration;
 

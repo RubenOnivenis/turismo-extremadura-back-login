@@ -11,14 +11,13 @@ import org.springframework.stereotype.Component;
 /**
  * MUY IMPORTANTE: ESTA CLASE SÓLO SE EJECUTARÁ UNA VEZ PARA CREAR LOS ROLES.
  * UNA VEZ CREADOS SE DEBERÁ ELIMINAR O BIEN COMENTAR EL CÓDIGO
- *
  */
 
-/** @Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
+/** Component: Es el estereotipo general y permite anotar un bean para que Spring lo considere uno de sus objetos. **/
 @Component
 public class CreateRoles implements CommandLineRunner {
 
-    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
+    /** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable rolService de tipo RolService **/
     RolService rolService;

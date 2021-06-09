@@ -20,22 +20,22 @@ import com.backend.security.service.UserDetailsServiceImpl;
 
 /** Anotación encargada de definir que la clase es una clase de configuración para el framework **/
 @Configuration
-/** @EnableWebSecurity es una anotación de marcador.
+/** EnableWebSecurity es una anotación de marcador.
  * Permite que Spring encuentre (es un @Configuration y, por lo tanto, @Component )
  * y aplica automáticamente la clase al global WebSecurity .
  * **/
 @EnableWebSecurity
-/** @EnableGlobalMethodSecurity habilita la seguridad de metodo de spring **/
+/** EnableGlobalMethodSecurity habilita la seguridad de metodo de spring **/
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 /** Extendemos de WebSecurityConfigurerAdapter **/
 public class MainSecurity extends WebSecurityConfigurerAdapter {
 
-    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
+    /** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable userDetailsService de tipo UserDetailsServiceImpl **/
     UserDetailsServiceImpl userDetailsService;
 
-    /** @Autowired nos permite inyectar la dependencia dentro de otras **/
+    /** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable jwtEntryPoin de tipo JwtEntryPoint **/
     JwtEntryPoint jwtEntryPoint;

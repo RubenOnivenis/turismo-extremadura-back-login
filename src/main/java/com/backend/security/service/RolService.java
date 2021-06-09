@@ -15,7 +15,7 @@ import java.util.Optional;
 @Transactional
 public class RolService {
 	
-	/** @Autowired nos permite inyectar la dependencia dentro de otras **/
+	/** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable de tipo RolRepository **/
     RolRepository rolRepository;

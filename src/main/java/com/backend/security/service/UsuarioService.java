@@ -14,7 +14,7 @@ import java.util.Optional;
 @Transactional
 public class UsuarioService {
 
-	/** @Autowired nos permite inyectar la dependencia dentro de otras **/
+	/** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable de tipo UsuarioRepository **/
     UsuarioRepository usuarioRepository;

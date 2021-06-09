@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	/** @Autowired nos permite inyectar la dependencia dentro de otras **/
+	/** Autowired nos permite inyectar la dependencia dentro de otras **/
     @Autowired
     /** Variable de tipo UsuarioService **/
     UsuarioService usuarioService;
